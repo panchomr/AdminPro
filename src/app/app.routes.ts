@@ -5,16 +5,23 @@ import { LoginComponent } from './login/login.component';
 import { ProgressComponent } from './pages/progress/progress.component';
 import { Graficas1Component } from './pages/graficas1/graficas1.component';
 import { NoPagefoundComponent } from './shared/no-pagefound/no-pagefound.component';
+import { PagesComponent } from './pages/pages.component';
 
 
 
 const appRoutes: Routes =[
-   {path:'dashboard',component:DashboardComponent},
+    {
+       path:'',
+       component:PagesComponent,
+       children:[
+        {path:'dashboard',component:LoginComponent},
+        {path:'progress',component:ProgressComponent},
+        {path:'graficas1',component:Graficas1Component}
+       ]
+    },
    {path:'login',component:LoginComponent},
    {path:'register',component:LoginComponent},
-   {path:'progress',component:ProgressComponent},
-   {path:'graficas1',component:Graficas1Component},
-   {path:'', redirectTo:'/dashboard',pathMatch:'full'}, 
+   //{path:'', redirectTo:'/dashboard',pathMatch:'full'}, 
    {path:'**', component: NoPagefoundComponent}
 ];
 
